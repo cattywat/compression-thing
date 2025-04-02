@@ -1,9 +1,10 @@
-length=13147026
-file=open(input('source file: '),'r',encoding='utf8')
+directory=input('file directory: ')
+file=open(directory+'original','r',encoding='utf8')
 dictionary=[]
-outfile=open(input('compressed file: '),'w',encoding='utf8')
-for i in range(1000):
-    a=file.readline()
+outfile=open(directory+'compressed','w',encoding='utf8')
+a=file.readline()
+i=1
+while a!='':
     b=a.split()
     for j in range(len(b)):
         found=False
@@ -17,9 +18,12 @@ for i in range(1000):
             outfile.write(str(len(dictionary)-1))
         outfile.write(' ')
     print(i)
-outfile.close()
-diction=open(input('dictionary file: '),'w',encoding='utf8')
+    a=file.readline()
+    i+=1
+#outfile.close()
+#diction=open(directory+'dictionary','w',encoding='utf8')
+outfile.write('\n')
 for i in range(len(dictionary)):
-    diction.write(str(dictionary[i])+'\n')
-diction.close()
+    outfile.write(str(dictionary[i])+'\n')
+outfile.close()
 file.close()
