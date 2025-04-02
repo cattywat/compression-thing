@@ -13,8 +13,8 @@ while(len(a)>0):
                 if(dictionary[k]==a[0:-i]):
                     a=a[-i:]
                     outfile.write(str(k)+' ')
-                else:
-                    print('something has definitely gone wrong')
+                    break
+            print('something has definitely gone wrong')
         i+=1
     maxlen=0
     total=0
