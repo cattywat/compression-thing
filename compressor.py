@@ -4,7 +4,7 @@ dictionary=[]
 outfile=open(directory+'compressed','w',encoding='utf8')
 a=file.readline()
 i=1
-while a!='':
+while a!='' and i<5000:
     b=a.split()
     for j in range(len(b)):
         found=False
