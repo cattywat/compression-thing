@@ -5,7 +5,6 @@ outfile=open(directory+'compressed','w',encoding='utf8')
 a=file.read()
 
 while(len(a)>0):
-    print(len(a))
     i=0
     while i<len(a):
         found=False
@@ -30,7 +29,6 @@ while(len(a)>0):
             elif(a.count(a[0:j])==1):
                 break
         dictionary.append(a[0:maxlen])
-        print(dictionary)
         outfile.write(str(len(dictionary)-1))
         a=a[maxlen:]
 
