@@ -20,7 +20,7 @@ def breakdown(tree):
     else:
         left=breakdown(left)
     if(len(right)==1):
-        right={0:right}
+        right={1:right}
     else:
         right=breakdown(right)
     result={}
@@ -30,31 +30,30 @@ def breakdown(tree):
         result.update({('1'+str(key)):value})
     return result
 
-
-
-file=open(input(),'r',encoding='utf8')
-char=file.read(1)
-dictionary=[[char,1]]
-
-for a in range(10000):
+def analyse(file,length):
     char=file.read(1)
-    print(a)
-    found=False
-    for i in range(len(dictionary)):
-        if(dictionary[i][0]==char):
-            dictionary[i][1]+=1
-            found=True
-    if not found:
-        dictionary.append([char,1])
+    dictionary=[[char,1]]
 
-tree=sort(dictionary)
+    for i in range(length):
+        char=file.read(1)
+        found=False
+        for i in range(len(dictionary)):
+            if(dictionary[i][0]==char):
+                dictionary[i][1]+=1
+                found=True
+        if not found:
+            dictionary.append([char,1])
 
-while(len(tree)>1):
-    print(len(tree))
-    a=tree.pop(0)
-    b=tree[0]
-    tree[0]=[[a[0],b[0]],a[1]+b[1]]
-    tree=sort(tree)
+    tree=sort(dictionary)
 
-final=breakdown(tree[0][0])
-print(final)
+    while(len(tree)>1):
+        a=tree.pop(0)
+        b=tree[0]
+        tree[0]=[[a[0],b[0]],a[1]+b[1]]
+        tree=sort(tree)
+
+    decode=breakdown(tree[0][0])
+    encode={}
+    for key, value in decode.items():
+        encode.update({value:key})
+    return [encode,decode]
