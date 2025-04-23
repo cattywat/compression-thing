@@ -1,7 +1,7 @@
 directory=input('file directory: ')
-file=open(directory+'original','r',encoding='utf8')
+file=open(directory+'original','br')
 dictionary=[]
-outfile=open(directory+'compressed','w',encoding='utf8')
+outfile=open(directory+'compressed','bw')
 a=file.read()
 
 while(len(a)>1):
@@ -15,7 +15,7 @@ while(len(a)>1):
                 if(dictionary[k]==a[0:-i]):
                     found=True
                     a=a[-i:]
-                    outfile.write(str(k)+' ')
+                    outfile.write(bytes(str(k)+' ',encoding='utf8'))
                     break
     if not found:
         maxlen=0
@@ -31,7 +31,7 @@ while(len(a)>1):
             elif(a.count(a[0:j])==1):
                 break
         dictionary.append(a[0:maxlen])
-        outfile.write(str(len(dictionary)-1)+' ')
+        outfile.write(bytes(str(len(dictionary)-1)+' ',encoding='utf8'))
         a=a[maxlen:]
     print(len(a))
     print(dictionary[-1])
@@ -40,15 +40,15 @@ if(len(a)==1):
         for k in range(len(dictionary)):
             if(dictionary[k]==a):
                 a=a[-i:]
-                outfile.write(str(k)+' ')
+                outfile.write(bytes(str(k)+' ',encoding='utf8'))
                 break
         i+=1
     if not found:
         dictionary.append(a)
-        outfile.write(str(len(dictionary)-1)+' ')
+        outfile.write(bytes(str(len(dictionary)-1)+' ',encoding='utf8'))
 
-outfile.write('\n')
+outfile.write(b'\n')
 for i in range(len(dictionary)):
-    outfile.write(str(dictionary[i])+'\n')
+    outfile.write(bytes(str(dictionary[i])+'\n',encoding='utf8'))
 outfile.close()
 file.close()
