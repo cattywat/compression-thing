@@ -11,7 +11,7 @@ for i in range(length-5):
     try:
         final.write(encoder[c])
     except KeyError as e:
-        print(e.args)
+        print(e.args[0])
     c=file.read(1)
 file.close()
 final.close()

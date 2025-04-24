@@ -11,24 +11,22 @@ def sort(toSort):
             return toSort
     return toSort
 def breakdown(tree):
-    if(type(tree[0])==str and type(tree[1])==str):
-        return {0:tree[0],1:tree[1]}
-    left=tree[0]
-    right=tree[1]
-    if(len(left)==1):
-        left={0:left}
-    else:
-        left=breakdown(left)
-    if(len(right)==1):
-        right={1:right}
-    else:
-        right=breakdown(right)
-    result={}
-    for key,value in left.items():
-        result.update({('0'+str(key)):value})
-    for key,value in right.items():
-        result.update({('1'+str(key)):value})
-    return result
+    print(tree)
+    if(type(tree)!=list):
+        return {0:tree}
+
+    left=breakdown(tree[0])
+    right=breakdown(tree[1])
+
+    final={}
+    for key, value in left.items():
+        temp='0'+str(key)
+        final.update({temp:value})
+    for key, value in right.items():
+        temp='1'+str(key)
+        final.update({temp:value})
+    
+    return final
 
 def analyse(file,length):
     char=file.read(1)
@@ -52,7 +50,7 @@ def analyse(file,length):
         tree[0]=[[a[0],b[0]],a[1]+b[1]]
         tree=sort(tree)
 
-    decode=breakdown(tree[0][0])
+    decode=breakdown(tree[0])
     encode={}
     for key, value in decode.items():
         encode.update({value:key})
