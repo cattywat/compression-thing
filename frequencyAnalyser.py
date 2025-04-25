@@ -11,7 +11,6 @@ def sort(toSort):
             return toSort
     return toSort
 def breakdown(tree):
-    print(tree)
     if(type(tree)!=list):
         return {0:tree}
 
@@ -50,7 +49,7 @@ def analyse(file,length):
         tree[0]=[[a[0],b[0]],a[1]+b[1]]
         tree=sort(tree)
 
-    decode=breakdown(tree[0])
+    decode=breakdown(tree[0][0])
     encode={}
     for key, value in decode.items():
         encode.update({value:key})

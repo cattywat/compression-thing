@@ -1,8 +1,8 @@
-import frequencyAnalyser
+import frequencyanalyser
 
 length=100000
 file=open(input(),'r',encoding='utf8')
-encoder, decoder = frequencyAnalyser.analyse(file,length)
+encoder, decoder = frequencyanalyser.analyse(file,length)
 
 final=open('compressed.txt','w',encoding='utf8')
 final.write(str(decoder)+'\n')
