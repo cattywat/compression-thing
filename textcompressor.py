@@ -5,11 +5,13 @@ file=open(input(),'r',encoding='utf8')
 encoder, decoder = frequencyanalyser.analyse(file,length)
 
 final=open('compressed.txt','wb')
-final.write(bytes(len(str(decoder).encode('utf-8'))))
 final.write(bytes(str(decoder),encoding='utf8'))
+final.write(bytes(1))
 file.seek(0)
 c=file.read(1)
 for i in range(length-5):
+    if(not c):
+        break
     try:
         final.write(bytes(encoder[c],encoding='utf8'))
     except KeyError as e:
