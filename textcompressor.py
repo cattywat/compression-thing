@@ -6,6 +6,7 @@ encoder, decoder = frequencyanalyser.analyse(file,length)
 
 final=open('compressed.txt','w',encoding='utf8')
 final.write(str(decoder)+'\n')
+file.seek(0)
 c=file.read(1)
 for i in range(length-5):
     try:
