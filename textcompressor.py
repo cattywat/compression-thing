@@ -1,4 +1,5 @@
 import frequencyanalyser
+import math
 
 length=100000
 file=open(input(),'r',encoding='utf8')
@@ -13,7 +14,10 @@ for i in range(length-5):
     if(not c):
         break
     try:
-        final.write(bytes(encoder[c],encoding='utf8'))
+        print(encoder[c])
+        print(int(encoder[c],2))
+        print(int(encoder[c],2).to_bytes(math.ceil(len(encoder[c])/8)))
+        final.write((int(encoder[c],2)).to_bytes(len(encoder[c])))
     except KeyError as e:
         print(e.args[0])
     c=file.read(1)
