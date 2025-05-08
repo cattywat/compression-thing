@@ -12,4 +12,20 @@ for i in range(len(c)):
     else:
         content+=c[i]
 
-print(dictionary)
+stream=''
+for i in range(len(content)):
+    temp=bin(content[i])[2:]
+    while len(temp)<8:
+        temp='0'+temp
+    stream+=temp
+
+result=''
+while len(stream)>0:
+    for i in range(len(stream)):
+        try:
+            result+=dictionary[stream[0:i]]
+            stream=stream[i:]
+            break
+        except KeyError:
+            continue
+    print(len(stream))
