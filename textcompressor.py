@@ -1,6 +1,6 @@
 import frequencyanalyser
 
-length=100000
+length=1000000
 file=open(input(),'r',encoding='utf8')
 encoder, decoder = frequencyanalyser.analyse(file,length)
 

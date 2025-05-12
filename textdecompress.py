@@ -14,11 +14,7 @@ for i in range(len(c)):
 
 stream=''
 for i in range(len(content)):
-    temp=bin(content[i])[2:]
-    while len(temp)<8:
-        temp='0'+temp
-    stream+=temp
-    print('processing ' + str(round(100*i/len(content),2)))
+    stream+=format(content[i],'08b')
 
 i=0
 while len(stream)>0:
