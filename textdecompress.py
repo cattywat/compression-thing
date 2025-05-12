@@ -18,22 +18,19 @@ for i in range(len(content)):
     while len(temp)<8:
         temp='0'+temp
     stream+=temp
-    print('processing ' + str(i/len(content)))
+    print('processing ' + str(round(100*i/len(content),2)))
 
-result=''
 i=0
 while len(stream)>0:
-    while sum(1 for item in list(dictionary.keys()) if item.startswith(stream[0:i]))>1:
-        i+=1
-    if(sum(1 for item in list(dictionary.keys()) if item.startswith(stream[0:i]))==1):
+    i=0
+    while sum(1 for item in list(dictionary.keys()) if item.startswith(stream[0:i]))>=1:
         try:
-            result+=dictionary[stream[0:i]]
+            output.write(dictionary[stream[0:i]])
             stream=stream[i:]
             i=0
+            print(len(stream))
         except KeyError:
             i+=1
             continue
-    elif(sum(1 for item in list(dictionary.keys()) if item.startswith(stream[0:i]))==0):
-        print('panic')
-        i=0
-    print(len(stream))
+    print('panic')
+output.close()

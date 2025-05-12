@@ -1,5 +1,4 @@
 import frequencyanalyser
-import math
 
 length=100000
 file=open(input(),'r',encoding='utf8')
@@ -16,7 +15,7 @@ for i in range(length-5):
         break
     stream+=encoder[c]
     if(len(stream)>=8):
-        final.write((int(stream[0:8],2)).to_bytes(math.ceil(len(encoder[c])/8),byteorder='big',signed=False))
+        final.write((int(stream[0:8],2)).to_bytes(1,byteorder='big',signed=False))
         stream=stream[8:]
     c=file.read(1)
 file.close()

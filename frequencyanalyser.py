@@ -12,7 +12,7 @@ def sort(toSort):
     return toSort
 def breakdown(tree):
     if(type(tree)!=list):
-        return {0:tree}
+        return {'':tree}
 
     left=breakdown(tree[0])
     right=breakdown(tree[1])
