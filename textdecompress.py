@@ -22,6 +22,7 @@ while len(stream)>0:
     while sum(1 for item in list(dictionary.keys()) if item.startswith(stream[0:i]))>=1:
         try:
             if(dictionary[stream[0:i]]=='EOF'):
+                stream=stream[i:]
                 break
             output.write(dictionary[stream[0:i]])
             stream=stream[i:]
@@ -29,6 +30,5 @@ while len(stream)>0:
             print(len(stream))
         except KeyError:
             i+=1
-            continue
     print('panic or done')
 output.close()

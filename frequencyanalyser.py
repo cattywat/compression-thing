@@ -17,18 +17,13 @@ def breakdown(tree):
     left=breakdown(tree[0])
     right=breakdown(tree[1])
 
-    midst={}
     final={}
     for key, value in left.items():
         temp='0'+str(key)
-        midst.update({temp:value})
+        final.update({temp:value})
     for key, value in right.items():
         temp='1'+str(key)
-        midst.update({temp:value})
-    for key, value in midst.items():
-        temp='1'+str(key)
         final.update({temp:value})
-    final.update({0:'EOF'})
     
     return final
 
@@ -54,7 +49,12 @@ def analyse(file,length):
         tree[0]=[[a[0],b[0]],a[1]+b[1]]
         tree=sort(tree)
 
-    decode=breakdown(tree[0][0])
+    this=breakdown(tree[0][0])
+    decode={}
+    for key, value in this.items():
+        temp='1'+str(key)
+        decode.update({temp:value})
+    decode.update({'0':'EOF'})
     encode={}
     for key, value in decode.items():
         encode.update({value:key})
