@@ -18,5 +18,8 @@ for i in range(length-5):
         final.write((int(stream[0:8],2)).to_bytes(1,byteorder='big',signed=False))
         stream=stream[8:]
     c=file.read(1)
+while(len(stream)<8):
+    stream+='0'
+final.write((int(stream[0:8],2)).to_bytes(1,byteorder='big',signed=False))
 file.close()
 final.close()

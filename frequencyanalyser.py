@@ -17,13 +17,18 @@ def breakdown(tree):
     left=breakdown(tree[0])
     right=breakdown(tree[1])
 
+    midst={}
     final={}
     for key, value in left.items():
         temp='0'+str(key)
-        final.update({temp:value})
+        midst.update({temp:value})
     for key, value in right.items():
         temp='1'+str(key)
+        midst.update({temp:value})
+    for key, value in midst.items():
+        temp='1'+str(key)
         final.update({temp:value})
+    final.update({0:'EOF'})
     
     return final
 
